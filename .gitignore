@@ -1,0 +1,57 @@
+# Compiled class files
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+dependency-reduced-pom.xml
+
+# Eclipse specific files
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+*.iws
+
+# Log and temporary files
+*.log
+*.tmp
+*.out
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment variable files
+.env
+
+## Docker
+#**/Dockerfile
+#*.dockerignore
+
+# Coverage and testing
+coverage/
+.surefire/
+.surefire-reports/
+
+# Reports
+*.txt
+
+# Exclude generated apidocs
+apidocs/
+
+# Exclude compiled test classes
+test-classes/
