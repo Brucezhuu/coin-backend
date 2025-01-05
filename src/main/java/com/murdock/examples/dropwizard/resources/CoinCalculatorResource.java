@@ -53,24 +53,22 @@ public class CoinCalculatorResource {
         for (int i = 0; i < n; i++) {
             int j = BigDecimal.valueOf(denominations.get(i)).setScale(2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)).intValue();
             coins[i] = j;
-            System.out.println(coins[i]);
         }
-        // 使用一个较大的常量表示无法到达
-        int INF = 100000000;  // 相当于 1e8
+
+        int INF = 100000000;
         int amount = BigDecimal.valueOf(targetAmount).setScale(2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)).intValue();
-        // f[j] 表示凑成金额 j 所需的最少硬币数
+
         int[] f = new int[amount + 1];
-        // path[j] 用于记录凑成金额 j 时，最后使用的硬币在 coins[] 中的索引
+
         int[] path = new int[amount + 1];
 
-        // 初始化
         for (int j = 1; j <= amount; j++) {
             f[j] = INF;
             path[j] = -1;
         }
         f[0] = 0;
 
-        // 动态规划
+
         for (int i = 0; i < n; i++) {
             int coinVal = coins[i];
             for (int j = coinVal; j <= amount; j++) {
@@ -81,27 +79,23 @@ public class CoinCalculatorResource {
             }
         }
 
-        // 如果 f[amount] 仍然是 INF，说明无法凑成
         if (f[amount] == INF) {
             return result;
         }
 
-        // 打印所用硬币（从后往前回溯）
         int m = amount;
-        System.out.print("使用的硬币：");
+
         while (m > 0) {
             int idx = path[m];
             if (idx == -1) {
                 break;
             }
             result.add(coins[idx] / 100.00);
-            System.out.print(coins[idx]/100.00 + " ");
             m -= coins[idx];
         }
 
         Collections.sort(result);
-        System.out.println();  // 换行
-        // 返回最少硬币数
+
         return result;
 
     }
